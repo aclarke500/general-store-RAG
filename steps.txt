@@ -1,0 +1,3 @@
+* build out "schemas" using gpt
+* dynamically embedd their descriptions
+* add them to lanceDB
