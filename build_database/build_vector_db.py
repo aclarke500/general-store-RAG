@@ -5,7 +5,7 @@ from product_meta_data import ProductMetaData
 
 # Load the SentenceTransformer model
 embedding_length = 768
-model = SentenceTransformer('distilbert-base-nli-stsb-mean-tokens')
+model = SentenceTransformer('all-MPNet-base-v2')
 
 def embed_item(item):
     description = item['description']   
