@@ -1,9 +1,0 @@
-lancedb
-sentence_transformers
-numpy
-python-dotenv
-openai
-rich
-pyfiglet
-torch==2.5.1
-pandas
