@@ -21,3 +21,6 @@ This will populate the general store with three tables, 'electronics', 'food', a
 
 ## Usage
 With that setup out of the way, execute <code>main.py</code> in the project root directory.
+
+## Testing
+In order to run the unit tests, execute <code>python -m unittest discover</code> in the project root directory.
