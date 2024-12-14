@@ -271,20 +271,3 @@ ProductMetaData = {
     "pet": pet_meta_data,
     "electronics": electronics_meta_data
 }
-# def find_common_keys(meta_data):
-#     common_keys = None
-
-#     for category, items in meta_data.items():
-#         for item in items:
-#             item_keys = set(item.keys())
-
-#             if common_keys is None:
-#                 common_keys = item_keys
-#             else:
-#                 common_keys &= item_keys
-
-#     return common_keys
-
-# # Find and print common keys across all items in ProductMetaData
-# common_keys = find_common_keys(ProductMetaData)
-# print("Common keys across all categories:", common_keys)
