@@ -2,10 +2,17 @@
 
 ## Quick Setup
 In order to install the correct dependencies and the database, run the following code. I would recommend using a python venv with Python 3.11 (Other versions may work, but 3.13 and 3.8.5 gave me errors out of the box, I've had the most success with 3.11)
+On Mac/Linux:
 <code>
 python -m venv myenv
 source myenv/bin/activate
 </code>
+On Windows:
+<code>
+python -m venv myenv
+myenv\Scripts\activate
+</code>
+
 
 <br><code>
 touch .env
