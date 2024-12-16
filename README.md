@@ -27,10 +27,8 @@ touch .env
 pip install --upgrade pip 
 pip install -r requirements.txt  
 python build_database/build_vector_db.py
-
-From there, the open ai api keys need to be added to the .env file.
-
 ```
+From there, the open ai api keys need to be added to the .env file.
 After that, the tests and the app can be ran using
 ```bash
  python -m unittest discover 
