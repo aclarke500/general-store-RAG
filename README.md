@@ -48,15 +48,15 @@ In order to run the unit tests, execute <code>python -m unittest discover</code>
 
 ## Components 
 For this app, there are 3 main components that interact.
-<ol>
-<strong><li>  The Database  </strong><br>
+
+### 1. The Database 
 The LanceDB database lives in the <code>general_store_db</code> directory in the projects root folder. This contains all the items for the general store and is divided up into three main tables, each representing their own department (food, electronics, and pet supplies). <br>
 In order for this database to be populated, <code>build_vector_db.py</code> must be run <strong>from the project's root directory.</strong> If it's run from the <code>build_database</code> directory, it will exist inside that directory and <code>main.py</code> will error. 
 <br>
 The databse is built off of product metadata that is stored in <code>product_meta_data.py</code> as an array of dicts. (I understand this is not realistic, but for the scope of this project I deemed it a necessary shortcut). When the databse is being built, all existing tables will be dropped. The metadata will be imported, and each products description will be embedded with a sentence transformer and the vector stores alongside the product. These will be written to the <code>general_store_db</code> directory, and the food, electronics, and pet supplies will all be added to their own respective tables.
 </li>
 
-### The RAG
+### 2. The RAG
 The RAG is implemented within the `query_utils.py`.  
 To better understand the RAG process and visualize the flow, refer to the following diagram: *(apologies for the hand-drawn diagram)*  
 
@@ -80,5 +80,6 @@ From there:
 5. A Pandas DataFrame is returned, ready to be displayed to the user.  
 
 
-<strong><li>Main</li></strong> <br> The main is compartively straightforward. It prints some ASCII art and has a while True loop for prompting the user, calling the RAG, and printing out the results. In case there is an error due to the LLM returning invalid JSON, this is caught and the loop continues. The relevant items are printed out to the user using the pandas dataframe <code>head()</code> method.
+### 3. Main
+ The main is compartively straightforward. It prints some ASCII art and has a while True loop for prompting the user, calling the RAG, and printing out the results. In case there is an error due to the LLM returning invalid JSON, this is caught and the loop continues. The relevant items are printed out to the user using the pandas dataframe <code>head()</code> method.
 </ol>
