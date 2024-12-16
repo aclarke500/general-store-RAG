@@ -73,7 +73,7 @@ class TestRAG(unittest.TestCase):
             query_db(sample_query, db)
         
     # query_LLM tests
-    def test_query_LLM_returns_string(self):
+    def test_query_LLM_returns_dict(self):
         result = query_LLM("I am interested in buying a laptop")
         self.assertIsInstance(result, dict, "query_LLM should return a dictionary object")
 
