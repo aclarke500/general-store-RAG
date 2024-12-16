@@ -14,6 +14,15 @@ model = SentenceTransformer('all-MPNet-base-v2')
 client = OpenAI(api_key=api_key)
 
 def get_department(query: dict) -> str | None:
+    """
+    Gets the department from the query.
+
+    Args:
+        query (dict): The query parameters.
+
+    Returns:
+        str | None: The department name, or None if the department is not found.
+    """
     if (not isinstance(query, dict)) or "category" not in query:
         return None
     category = query["category"].lower()
@@ -25,6 +34,15 @@ def get_department(query: dict) -> str | None:
     return None
 
 def embed_query_description(query : dict) -> np.ndarray:
+    """
+    Embeds the description in the query using the SentenceTransformer model.
+
+    Args:
+        query (dict): The query parameters.
+
+    Returns:
+        np.ndarray: The normalized embedding of the description.
+    """
     if "description" not in query or not query["description"]:
         raise ValueError("Query must contain a description")
     
@@ -34,6 +52,16 @@ def embed_query_description(query : dict) -> np.ndarray:
     return normalized_embedding
 
 def query_db(query: dict, db: lancedb.LanceDBConnection) -> pd.DataFrame:
+    """
+    Executes a query on the database and returns the results.
+
+    Args:
+        query (dict): The query parameters, including filters like price and quantity.
+        db (lancedb.LanceDBConnection): The LanceDB connection object.
+
+    Returns:
+        pd.DataFrame: A DataFrame containing the query results.
+    """
     table_name = get_department(query)
     if not table_name:
         return pd.DataFrame({})  # Return an empty list if the department is not found
@@ -48,6 +76,14 @@ def query_db(query: dict, db: lancedb.LanceDBConnection) -> pd.DataFrame:
     return results
 
 def query_LLM(user_input: str) -> dict | None:
+    """
+
+    Args:
+        user_input (str): The user's input query.
+
+    Returns:
+        dict: The response to the user's query as a dict, or None in the case of invalid parsing.
+    """
     if not isinstance(user_input, str) or not user_input:
         raise ValueError("User input must be a non-empty string")
 
