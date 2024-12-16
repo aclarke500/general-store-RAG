@@ -1,5 +1,18 @@
 # general-store-RAG
 
+## Quick Setup
+In order to install the correct dependencies and the database, run the following code. I would recommend using a python venv with Python 3.11 (Other versions may work, but 3.13 and 3.8.5 gave me errors out of the box, I've had the most success with 3.11)
+<br><code>
+touch .env
+pip install --upgrade pip
+pip install -r requirements.txt 
+python3 build_database/build_vector_db.py
+</code> <br>
+From there, the open ai api keys need to be added to the .env file.
+After that, the tests and the app can be ran using:<br>
+<code> python -m unittest discover <br> python3 main.py
+</code>
+
 ## Dependencies
 The dependencies are listed in the requirements.txt folder. They can be installed by running: <br> 
 <code>pip install -r requirements.txt
