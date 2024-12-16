@@ -5,18 +5,15 @@ import pandas as pd
 from dotenv import load_dotenv
 from openai import OpenAI
 import json
+import lancedb
 
-# Load environment variables
+# load environmentr vars, and get the openAI client and transformers loaded
 load_dotenv()
 api_key = os.getenv('open_ai_key')
-
-# Sentence transformer to query the vector DB
 model = SentenceTransformer('all-MPNet-base-v2')
-
-# OpenAI client
 client = OpenAI(api_key=api_key)
 
-def get_department(query):
+def get_department(query: dict) -> str | None:
     if (not isinstance(query, dict)) or "category" not in query:
         return None
     category = query["category"].lower()
@@ -27,7 +24,7 @@ def get_department(query):
         return category
     return None
 
-def embed_query_description(query):
+def embed_query_description(query : dict) -> np.ndarray:
     if "description" not in query or not query["description"]:
         raise ValueError("Query must contain a description")
     
@@ -36,7 +33,7 @@ def embed_query_description(query):
     normalized_embedding = embedding / np.linalg.norm(embedding)
     return normalized_embedding
 
-def query_db(query, db):
+def query_db(query: dict, db: lancedb.LanceDBConnection) -> pd.DataFrame:
     table_name = get_department(query)
     if not table_name:
         return pd.DataFrame({})  # Return an empty list if the department is not found
@@ -50,7 +47,7 @@ def query_db(query, db):
     
     return results
 
-def query_LLM(user_input):
+def query_LLM(user_input: str) -> dict | None:
     if not isinstance(user_input, str) or not user_input:
         raise ValueError("User input must be a non-empty string")
 
